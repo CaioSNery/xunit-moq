@@ -11,15 +11,11 @@ namespace MRicos.Tests.ValueObjectsTest
         [Fact]
         public void Create_ValidCpf_ReturnsCpfObject()
         {
-
-            var validCpf = "12345678909";
-
-
-            var cpf = MRicos.Domain.Accounts.Entities.ValueObjects.Cpf.Create(validCpf);
-
-
+            var validCpf = "123.456.789-09";
+            var cpf = Domain.Accounts.Entities.ValueObjects.Cpf.Create(validCpf);
             Assert.NotNull(cpf);
-            Assert.Equal(validCpf, cpf.Value);
+            Assert.Equal("12345678909", cpf.Value);
+            Assert.Equal("123.456.789-09", cpf.Formatted);
         }
 
         [Fact]

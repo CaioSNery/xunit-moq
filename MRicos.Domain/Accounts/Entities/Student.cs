@@ -14,14 +14,23 @@ namespace MRicos.Domain.Accounts.Entities
          string password) : base(Guid.NewGuid())
         {
             Name = new Name(firstName, lastName);
-            Cpf = cpf;
+            Cpf = Cpf.Create(cpf);
             Email = Email.Create(email);
             Password = Password.Create(password);
+
+            if (string.IsNullOrWhiteSpace(firstName))
+                throw new ArgumentException("First name is required.");
+
+            if (string.IsNullOrWhiteSpace(lastName))
+                throw new ArgumentException("Last name is required.");
+
+            if (string.IsNullOrWhiteSpace(password) || password.Length < 6)
+                throw new ArgumentException("Password must have at least 6 characters.");
         }
 
         public Name Name { get; }
         public Email Email { get; }
-        public string Cpf { get; set; } = string.Empty;
+        public Cpf Cpf { get; }
         public Password Password { get; }
 
     }

@@ -20,16 +20,53 @@ namespace Tests.Domain.Tests
                 "securepassword#!@22");
             Assert.NotNull(student);
             Assert.Equal("Jhon Doe", student.Name.ToString());
-            Assert.Equal("12345678900", student.Cpf.ToString());
+            Assert.Equal("12345678900", student.Cpf.Value);
             Assert.Equal("john.doe@example.com", student.Email.Address.ToString());
             Assert.True(student.Password.Challenge("securepassword#!@22"));
 
         }
 
-
-
-
-
-
+        [Fact]
+        public void NaoDeveCriarUmEstudanteComCpfInvalido()
+        {
+            Assert.Throws<ArgumentException>(() => new Student(
+                "Jhon",
+                "Doe",
+                "123",
+                "john.doe@example.com",
+                "securepassword#!@22"));
+        }
+        [Fact]
+        public void NaoDeveCriarUmEstudanteComEmailInvalido()
+        {
+            Assert.Throws<ArgumentException>(() => new Student(
+                "Jhon",
+                "Doe",
+                "12345678900",
+                "john.doeexample.com",
+                "securepassword#!@22"));
+        }
+        [Fact]
+        public void NaoDeveCriarUmEstudanteComSenhaInvalida()
+        {
+            Assert.Throws<ArgumentException>(() => new Student(
+                "Jhon",
+                "Doe",
+                "12345678900",
+                "john.doe@example.com",
+                "123"));
+        }
+        [Fact]
+        public void NaoDeveCriarUmEstudanteComNomeInvalido()
+        {
+            Assert.Throws<ArgumentException>(() => new Student(
+                "",
+                "Doe",
+                "12345678900",
+                "john.doe@example.com",
+                "securepassword#!@22"));
+        }
     }
 }
+
+

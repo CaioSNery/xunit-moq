@@ -7,6 +7,8 @@ namespace MRicos.Domain.Accounts.Entities.ValueObjects
     {
         #region Constants
         private const int CpfLength = 11;
+
+
         #endregion
 
         #region Constructors
@@ -22,16 +24,21 @@ namespace MRicos.Domain.Accounts.Entities.ValueObjects
             if (string.IsNullOrWhiteSpace(value))
                 throw new ArgumentException("CPF cannot be empty.");
 
-            value = value.Trim().Replace(".", "").Replace("-", "");
+            // Mantém uma cópia do valor original para checar o formato
+            var original = value.Trim();
+
+            // Remove formatação
+            value = original.Replace(".", "").Replace("-", "");
 
             if (value.Length != CpfLength || !value.All(char.IsDigit))
                 throw new ArgumentException("Invalid CPF format.");
 
-            // Additional CPF validation logic can be added here
             if (!IsValidCpf(value))
                 throw new ArgumentException("Invalid CPF number.");
 
-            return new Cpf(value);
+
+
+            return new Cpf(value); // sempre armazena "limpo"
         }
 
         public static bool IsValidCpf(string cpf)
@@ -47,6 +54,8 @@ namespace MRicos.Domain.Accounts.Entities.ValueObjects
 
         #region Properties
         public string Value { get; }
+        public string Formatted =>
+    $"{Value.Substring(0, 3)}.{Value.Substring(3, 3)}.{Value.Substring(6, 3)}-{Value.Substring(9, 2)}";
         #endregion
     }
 }
