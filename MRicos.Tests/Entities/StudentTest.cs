@@ -19,10 +19,9 @@ namespace Tests.Domain.Tests
                 "john.doe@example.com",
                 "securepassword");
             Assert.NotNull(student);
-            Assert.Equal("Jhon", student.FirstName);
-            Assert.Equal("Doe", student.LastName);
+            Assert.Equal("Jhon Doe", student.Name.ToString());
             Assert.Equal("12345678900", student.Cpf);
-            Assert.Equal("john.doe@example.com", student.Email);
+            Assert.Equal("john.doe@example.com", student.Email.Address);
             Assert.Equal("securepassword", student.Password);
 
 

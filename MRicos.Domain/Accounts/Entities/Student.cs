@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MRicos.Domain.Accounts.Entities.ValueObjects;
 using MRicos.Domain.Shared;
 
 namespace MRicos.Domain.Accounts.Entities
@@ -10,24 +11,21 @@ namespace MRicos.Domain.Accounts.Entities
     {
 
 
-        public Student(string firstName,
-         string lastName,
+        public Student(string firstName, string lastName,
          string cpf,
          string email,
          string password) : base(Guid.NewGuid())
         {
-            FirstName = firstName;
-            LastName = lastName;
+            Name = new Name(firstName, lastName);
             Cpf = cpf;
-            Email = email;
-            Password = password;
+            Email = Email.Create(email);
+            Password = Password.Create(password);
         }
 
-        public string FirstName { get; set; } = string.Empty;
-        public string LastName { get; set; } = string.Empty;
+        public Name Name { get; }
+        public Email Email { get; }
         public string Cpf { get; set; } = string.Empty;
-        public string Email { get; set; } = string.Empty;
-        public string Password { get; set; } = string.Empty;
+        public Password Password { get; }
 
     }
 }
