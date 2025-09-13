@@ -17,15 +17,12 @@ namespace Tests.Domain.Tests
                 "Doe",
                 "12345678900",
                 "john.doe@example.com",
-                "securepassword");
+                "securepassword#!@22");
             Assert.NotNull(student);
             Assert.Equal("Jhon Doe", student.Name.ToString());
-            Assert.Equal("12345678900", student.Cpf);
-            Assert.Equal("john.doe@example.com", student.Email.Address);
-            Assert.Equal("securepassword", student.Password);
-
-
-
+            Assert.Equal("12345678900", student.Cpf.ToString());
+            Assert.Equal("john.doe@example.com", student.Email.Address.ToString());
+            Assert.True(student.Password.Challenge("securepassword#!@22"));
 
         }
 
