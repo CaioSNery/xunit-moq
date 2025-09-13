@@ -25,6 +25,10 @@ namespace MRicos.Domain.Accounts.Entities.ValueObjects
         #region Properties
         public string Address { get; } = string.Empty;
 
+        public static implicit operator string(Email email) => email.Address;
+
+        public override string ToString() => Address;
+
         #endregion
 
         #region Factory Method

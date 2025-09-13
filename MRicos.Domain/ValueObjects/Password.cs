@@ -98,7 +98,7 @@ namespace MRicos.Domain.Accounts.Entities.ValueObjects
         #region Factory Method
         public static Password Create(string? text = null) => new Password(text);
 
-        public static bool IsValid(string password)
+        public static new bool IsValid(string password)
         {
             if (string.IsNullOrEmpty(password) || string.IsNullOrWhiteSpace(password))
                 return false;

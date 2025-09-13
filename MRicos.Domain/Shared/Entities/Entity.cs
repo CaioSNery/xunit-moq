@@ -2,11 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MRicos.Domain.Shared.Events;
 
 namespace MRicos.Domain.Shared
 {
     public abstract class Entity : IEquatable<Guid>
     {
+        private readonly List<IDomainEvents> _domainEvents = new();
+
+        public IReadOnlyCollection<IDomainEvents> DomainEvents => _domainEvents;
+        public void ClearDomainEvents() => _domainEvents.Clear();
+        public void RaiseEvent(IDomainEvents @domainEvent) => _domainEvents.Add(@domainEvent);
+
         protected Entity(Guid id)
         {
             Id = id;

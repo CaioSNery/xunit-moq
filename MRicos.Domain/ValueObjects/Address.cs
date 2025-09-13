@@ -24,6 +24,10 @@ namespace MRicos.Domain.ValueObjects
                 .IsNotNullOrEmpty(ZipCode, "ZipCode", "ZipCode cannot be empty.")
             );
         }
+        public static Address Create(string street, string city = "", string state = "", string zipCode = "")
+        {
+            return new Address(street, city, state, zipCode);
+        }
 
         public string Street { get; }
         public string City { get; }
