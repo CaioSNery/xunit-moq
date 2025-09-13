@@ -17,7 +17,8 @@ namespace Tests.Domain.Tests
                 "Doe",
                 "12345678900",
                 "john.doe@example.com",
-                "securepassword#!@22");
+                "securepassword#!@22",
+                "123 Main St, Springfield, IL 62701");
             Assert.NotNull(student);
             Assert.Equal("Jhon Doe", student.Name.ToString());
             Assert.Equal("12345678900", student.Cpf.Value);
@@ -34,7 +35,8 @@ namespace Tests.Domain.Tests
                 "Doe",
                 "123",
                 "john.doe@example.com",
-                "securepassword#!@22"));
+                "securepassword#!@22",
+                "123 Main St, Springfield, IL 62701"));
         }
         [Fact]
         public void NaoDeveCriarUmEstudanteComEmailInvalido()
@@ -44,7 +46,8 @@ namespace Tests.Domain.Tests
                 "Doe",
                 "12345678900",
                 "john.doeexample.com",
-                "securepassword#!@22"));
+                "securepassword#!@22",
+                "123 Main St, Springfield, IL 62701"));
         }
         [Fact]
         public void NaoDeveCriarUmEstudanteComSenhaInvalida()
@@ -54,7 +57,8 @@ namespace Tests.Domain.Tests
                 "Doe",
                 "12345678900",
                 "john.doe@example.com",
-                "123"));
+                "123",
+                "123 Main St, Springfield, IL 62701"));
         }
         [Fact]
         public void NaoDeveCriarUmEstudanteComNomeInvalido()
@@ -64,7 +68,8 @@ namespace Tests.Domain.Tests
                 "Doe",
                 "12345678900",
                 "john.doe@example.com",
-                "securepassword#!@22"));
+                "securepassword#!@22",
+                "123 Main St, Springfield, IL 62701"));
         }
     }
 }

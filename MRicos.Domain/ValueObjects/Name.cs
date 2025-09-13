@@ -3,11 +3,15 @@ using MRicos.Domain.Shared.ValueObjects;
 
 namespace MRicos.Domain.Accounts.Entities.ValueObjects
 {
-    public sealed record Name : ValueObject
+    public sealed class Name : ValueObject
     {
-        public const int MinLeghth = 2;
-        public const int MaxLeghth = 50;
+        #region Constants
+        public const int MinLength = 2;
+        public const int MaxLength = 50;
 
+        #endregion
+
+        #region Constructors
         public Name(string firstName, string lastName)
         {
             FirstName = firstName;
@@ -15,7 +19,9 @@ namespace MRicos.Domain.Accounts.Entities.ValueObjects
 
 
         }
+        #endregion
 
+        #region Factory Method
         public static Name Create(string firstName, string lastName)
         {
 
@@ -25,20 +31,23 @@ namespace MRicos.Domain.Accounts.Entities.ValueObjects
             if (string.IsNullOrWhiteSpace(lastName))
                 throw new ArgumentException("Last name cannot be empty.");
 
-            if (firstName.Length < MinLeghth || firstName.Length > MaxLeghth)
-                throw new ArgumentException($"First name must be between {MinLeghth} and {MaxLeghth} characters.");
+            if (firstName.Length < MinLength || firstName.Length > MaxLength)
+                throw new ArgumentException($"First name must be between {MinLength} and {MaxLength} characters.");
 
-            if (lastName.Length < MinLeghth || lastName.Length > MaxLeghth)
-                throw new ArgumentException($"Last name must be between {MinLeghth} and {MaxLeghth} characters.");
+            if (lastName.Length < MinLength || lastName.Length > MaxLength)
+                throw new ArgumentException($"Last name must be between {MinLength} and {MaxLength} characters.");
 
             return new Name(firstName, lastName);
         }
+        #endregion
 
+        #region Properties
         public string FirstName { get; }
         public string LastName { get; }
 
         public static implicit operator string(Name name) => name.ToString();
 
         public override string ToString() => $"{FirstName} {LastName}";
+        #endregion
     }
 }

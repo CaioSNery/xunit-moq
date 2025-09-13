@@ -5,7 +5,7 @@ using MRicos.Domain.Shared.ValueObjects;
 
 namespace MRicos.Domain.Accounts.Entities.ValueObjects
 {
-    public sealed record Password : ValueObject
+    public sealed class Password : ValueObject
     {
         #region Constants
         private const string Valid = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";

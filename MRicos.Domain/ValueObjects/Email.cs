@@ -5,9 +5,8 @@ using MRicos.Domain.Shared.ValueObjects;
 
 namespace MRicos.Domain.Accounts.Entities.ValueObjects
 {
-    public sealed partial record Email : ValueObject
+    public sealed partial class Email : ValueObject
     {
-
 
         #region Constants
         private const string Pattern = @"^\w+[^@\s]+@[^@\s]+\.[^@\s]+$";
@@ -50,10 +49,6 @@ namespace MRicos.Domain.Accounts.Entities.ValueObjects
         [GeneratedRegex(Pattern)]
         public static partial Regex EmailRegex();
         #endregion
-
-
-
-
 
     }
 }

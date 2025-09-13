@@ -1,9 +1,10 @@
 
+using Flunt.Validations;
 using MRicos.Domain.Shared.ValueObjects;
 
 namespace MRicos.Domain.Accounts.Entities.ValueObjects
 {
-    public sealed record Cpf : ValueObject
+    public sealed class Cpf : ValueObject
     {
         #region Constants
         private const int CpfLength = 11;
@@ -15,6 +16,12 @@ namespace MRicos.Domain.Accounts.Entities.ValueObjects
         public Cpf(string value)
         {
             Value = value;
+
+            AddNotifications(new Contract<Cpf>()
+                .Requires()
+                .IsNotNullOrEmpty(Value, "Cpf", "CPF cannot be empty.")
+
+            );
         }
         #endregion
 
