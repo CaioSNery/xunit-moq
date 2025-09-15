@@ -22,6 +22,8 @@ namespace MRicos.Tests.ValueObjectsTest
             Assert.Equal("Springfield", address.City);
             Assert.Equal("IL", address.State);
             Assert.Equal("62701", address.ZipCode);
+
+            
         }
     }
 }

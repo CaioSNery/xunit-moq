@@ -456,7 +456,8 @@ Temporary Items
 .apdisk
 
 # content below from: https://github.com/github/gitignore/blob/master/Global/Windows.gitignore
-# Windows thumbnail cache files
+# Windows thum0
+bnail cache files
 Thumbs.db
 ehthumbs.db
 ehthumbs_vista.db

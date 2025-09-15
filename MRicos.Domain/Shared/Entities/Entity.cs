@@ -8,11 +8,13 @@ namespace MRicos.Domain.Shared
 {
     public abstract class Entity : IEquatable<Guid>
     {
+        #region Domain Events
         private readonly List<IDomainEvents> _domainEvents = new();
 
         public IReadOnlyCollection<IDomainEvents> DomainEvents => _domainEvents;
         public void ClearDomainEvents() => _domainEvents.Clear();
         public void RaiseEvent(IDomainEvents @domainEvent) => _domainEvents.Add(@domainEvent);
+        #endregion
 
         protected Entity(Guid id)
         {

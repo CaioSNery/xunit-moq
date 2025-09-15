@@ -1,6 +1,6 @@
 
 using System.Text.RegularExpressions;
-
+using MRicos.Domain.Shared.Extensions;
 using MRicos.Domain.Shared.ValueObjects;
 
 namespace MRicos.Domain.Accounts.Entities.ValueObjects
@@ -16,18 +16,21 @@ namespace MRicos.Domain.Accounts.Entities.ValueObjects
         #endregion
 
         #region Constructors
-        private Email(string address)
+        private Email(string address, string hash)
         {
             Address = address;
+            Hash = hash;
+        }
+
+        private Email()
+        {
         }
         #endregion
 
         #region Properties
         public string Address { get; } = string.Empty;
+        public string Hash { get; } = string.Empty;
 
-        public static implicit operator string(Email email) => email.Address;
-
-        public override string ToString() => Address;
 
         #endregion
 
@@ -45,8 +48,17 @@ namespace MRicos.Domain.Accounts.Entities.ValueObjects
             if (!EmailRegex().IsMatch(address))
                 throw new ArgumentException("Invalid email format.");
 
-            return new Email(address);
+            return new Email(address, address.ToBase64());
         }
+        #endregion
+
+        #region Operators
+        public static implicit operator string(Email email) => email.ToString();
+
+        #endregion
+
+        #region Overrides
+        public override string ToString() => Address;
         #endregion
 
         #region Source Generators
