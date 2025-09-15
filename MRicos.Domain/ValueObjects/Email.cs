@@ -9,9 +9,9 @@ namespace MRicos.Domain.Accounts.Entities.ValueObjects
     {
 
         #region Constants
-        private const string Pattern = @"^\w+[^@\s]+@[^@\s]+\.[^@\s]+$";
-        private const int MaxLength = 100;
-        private const int MinLength = 5;
+        public const string Pattern = @"^\w+[^@\s]+@[^@\s]+\.[^@\s]+$";
+        public const int MaxLength = 100;
+        public const int MinLength = 5;
 
         #endregion
 
