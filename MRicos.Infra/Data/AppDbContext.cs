@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using Microsoft.EntityFrameworkCore;
+using MRicos.Domain.Accounts.Entities;
 
 namespace MRicos.Infra.Data
 {
@@ -12,6 +13,8 @@ namespace MRicos.Infra.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
+
+        public DbSet<Student>Students{get; set; }
 
 
 

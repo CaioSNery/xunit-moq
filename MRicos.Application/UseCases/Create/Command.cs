@@ -8,7 +8,15 @@ using MRicos.Application.UseCases.Edit;
 
 namespace MRicos.Application.UseCases.Create
 {
-    public sealed record Command(string Email) : ICommand<Response>
+    public sealed record Command(string FirstName,
+        string LastName,
+        string Cpf,
+        string Email,
+        string Password,
+        string Street,
+        string City,
+        string State,
+        string ZipCode) : ICommand<Response>
     {
 
     }
